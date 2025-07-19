@@ -1,0 +1,130 @@
+const Resource = require('../models/resource');
+const uploadToCloudinary = require('../services/cloudinaryService');
+
+
+// POST /api/resources
+const uploadResource = async (req, res) => {
+    try {
+      const { title, subject, semester, description } = req.body;
+      const url = req.file?.path;
+      const result = await uploadToCloudinary(url);
+      const pdfUrl = result.secure_url;
+  
+      if (!pdfUrl) return res.status(400).json({ message: 'PDF is required' });
+  
+      const newResource = new Resource({
+        title,
+        subject,
+        semester,
+        description,
+        pdfUrl,
+        uploadedBy: req.user._id
+      });
+  
+      const saved = await newResource.save();
+      res.status(201).json(saved);
+    } catch (err) {
+      res.status(500).json({ message: 'Upload failed', error: err.message });
+    }
+};
+  
+
+// GET /api/resources/my
+const getMyResources = async (req, res) => {
+    try {
+      const myResources = await Resource.find({ uploadedBy: req.user._id }).sort({ createdAt: -1 });
+      res.json(myResources);
+    } catch (err) {
+      res.status(500).json({ message: 'Error fetching your resources', error: err.message });
+    }
+};
+  
+
+// PUT /api/resources/:id
+const updateResource = async (req, res) => {
+    try {
+      const resource = await Resource.findById(req.params.id);
+  
+      if (!resource) return res.status(404).json({ message: 'Resource not found' });
+      if (resource.uploadedBy.toString() !== req.user._id.toString()) {
+        return res.status(403).json({ message: 'Unauthorized' });
+      }
+  
+      const { title, subject, semester, description } = req.body;
+      let pdfUrl = resource.pdfUrl;
+
+      if (req.file) {
+        const url = req.file?.path;
+        const result = await uploadToCloudinary(url);
+        pdfUrl = result.secure_url;
+
+      }
+  
+      resource.title = title || resource.title;
+      resource.subject = subject || resource.subject;
+      resource.semester = semester || resource.semester;
+      resource.description = description || resource.description;
+  
+      const updated = await resource.save();
+      res.json(updated);
+    } catch (err) {
+      res.status(500).json({ message: 'Update failed', error: err.message });
+    }
+};
+  
+
+// POST /api/resources/:id/reviews
+const addReview = async (req, res) => {
+    try {
+      const { rating, comment } = req.body;
+      const resource = await Resource.findById(req.params.id);
+  
+      if (!resource) return res.status(404).json({ message: 'Resource not found' });
+  
+      const alreadyReviewed = resource.reviews.find(
+        (rev) => rev.user.toString() === req.user._id.toString()
+      );
+      if (alreadyReviewed) {
+        return res.status(400).json({ message: 'You already reviewed this resource' });
+      }
+  
+      const newReview = {
+        user: req.user._id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment
+      };
+  
+      resource.reviews.push(newReview);
+  
+      // Recalculate average rating
+      resource.averageRating =
+        resource.reviews.reduce((sum, r) => sum + r.rating, 0) / resource.reviews.length;
+  
+      await resource.save();
+  
+      res.status(201).json({ message: 'Review added' });
+    } catch (err) {
+      res.status(500).json({ message: 'Error adding review', error: err.message });
+    }
+};
+
+
+// DELETE /api/resources/:id
+const deleteResource = async (req, res) => {
+    try {
+      const resource = await Resource.findById(req.params.id);
+      if (!resource) return res.status(404).json({ message: 'Resource not found' });
+  
+      if (resource.uploadedBy.toString() !== req.user._id.toString()) {
+        return res.status(403).json({ message: 'Unauthorized' });
+      }
+  
+      await resource.deleteOne();
+      res.json({ message: 'Resource deleted successfully' });
+    } catch (err) {
+      res.status(500).json({ message: 'Delete failed', error: err.message });
+    }
+};
+
+module.exports = {uploadResource, getMyResources, updateResource, addReview, deleteResource};

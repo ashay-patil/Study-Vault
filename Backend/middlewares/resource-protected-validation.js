@@ -1,0 +1,32 @@
+const { InvalidResource } = require("../errors");
+const { uploadResource, updateResource, addReview } = require("../validators/resource-protected");
+
+const uploadResourceValidationMiddleware = (req, res, next) => {
+    const { error } = uploadResource(req.body);
+    if (error) {
+        throw new InvalidResource(error.details[0].message);
+    }
+    next();
+};
+
+const updateResourceValidationMiddleware = (req, res, next) => {
+    const { error } = updateResource(req.body);
+    if (error) {
+        throw new InvalidResource(error.details[0].message);
+    }
+    next();
+};
+
+const addReviewValidationMiddleware = (req, res, next) => {
+    const { error } = addReview(req.body);
+    if (error) {
+        throw new InvalidResource(error.details[0].message);
+    }
+    next();
+};
+
+module.exports = {
+    uploadResourceValidationMiddleware,
+    updateResourceValidationMiddleware,
+    addReviewValidationMiddleware
+};
