@@ -30,11 +30,11 @@ const verifyOTP = async (req, res)=>{
     const {email, otp} = req.body;
     const user = await User.findOne({email});
     if(!user){
-        return res.status().json({success : false, msg : 'User not found'});
+        return res.status(StatusCodes.NOT_FOUND).json({success : false, msg : 'User not found'});
     }
     const now = new Date();
     if(!user.otpExpiresAt || user.otpExpiresAt < now){
-        return res.status(StatusCodes.GONE).json({success : false, msg : 'OTP is Expires'});
+        return res.status(StatusCodes.GONE).json({success : false, msg : 'OTP is Expired'});
     }
     if(user.otp!==otp){
         return res.status(StatusCodes.UNAUTHORIZED).json({success:false, msg:'Invalid OTP'});
@@ -71,7 +71,7 @@ const login = async (req,res)=>{
     const {email, password} = req.body;
     const user = await User.findOne({email});
     if(!user){
-        return res.status().json({success:false, msg : 'User not registered'});
+        return res.status(StatusCodes.NOT_FOUND).json({success:false, msg : 'User not registered'});
     }
     if(!user.isVerified){
         return res.status(StatusCodes.UNAUTHORIZED).json({success : false, msg : 'Email not verified'});

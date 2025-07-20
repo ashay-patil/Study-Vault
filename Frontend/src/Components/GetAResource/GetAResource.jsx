@@ -22,7 +22,7 @@ const GetAResource = () => {
             const res = await axios.get(`http://localhost:3000/api/v1/resources/public/get-single-resource/${id}`);
             setResource(res.data);
         } catch (err) {
-            setError('Could not load resource.');
+            setError(err.response.data.msg || 'Could not load resource. Try again later');
         } finally {
             setLoading(false);
         }
@@ -63,10 +63,8 @@ const GetAResource = () => {
             setReviewForm({ rating: '', comment: '' });
             fetchResource(); // Refresh resource to show new review
         } catch (err) {
-            setReviewError(
-                err.response?.data?.message ||
-                'Could not submit review. You may need to log in or you have already reviewed.'
-            );
+            console.log(err);
+            setReviewError(err.response.data.message || 'Could not submit review. Try again later');
         } finally {
             setReviewSubmitting(false);
         }

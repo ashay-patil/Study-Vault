@@ -40,7 +40,7 @@ const getAllResources = async (req, res) => {
   
       res.json({ resources, totalPages: Math.ceil(total / limit), currentPage: +page });
     } catch (err) {
-      res.status(500).json({ message: 'Error fetching resources', error: err.message });
+      res.status(500).json({ message: 'Error fetching resources. Try again later', error: err.message });
     }
 };
 
@@ -53,7 +53,7 @@ const getSingleResource = async (req, res) => {
   
       res.json(resource);
     } catch (err) {
-      res.status(500).json({ message: 'Error fetching resource', error: err.message });
+      res.status(500).json({ message: 'Error fetching resource. Try again later', error: err.message });
     }
 };
 

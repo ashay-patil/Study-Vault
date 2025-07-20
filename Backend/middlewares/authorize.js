@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const authorize = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    if (!authHeader) return res.status(401).json({ msg: 'No token provided' });
+    if (!authHeader) return res.status(401).json({ msg: 'You need to login first' });
   
     const token = authHeader.split(' ')[1];
     try {
@@ -11,7 +11,7 @@ const authorize = (req, res, next) => {
       req.user = decoded; // attach user data to request
       next();
     } catch (err) {
-      return res.status(403).json({ msg: 'Invalid token' });
+      return res.status(403).json({ msg: 'You need to login first' });
     }
 };
 

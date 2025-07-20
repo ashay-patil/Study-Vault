@@ -117,7 +117,7 @@ const Register = () => {
         setOtpStatus(res.data.msg || 'OTP verification failed');
       }
     } catch (err) {
-      setOtpStatus('An error occurred during OTP verification.');
+      setOtpStatus(err.response.data.msg || 'An error occurred during OTP verification.');
     } finally {
       setOtpLoading(false);
     }
@@ -139,7 +139,7 @@ const Register = () => {
         setError(res.data.msg || 'Registration failed');
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError(err.response.data.msg || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }

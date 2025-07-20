@@ -39,7 +39,7 @@ const getMyResources = async (req, res) => {
       res.json(myResources);
       console.log("myResources",myResources);
     } catch (err) {
-      res.status(500).json({ message: 'Error fetching your resources', error: err.message });
+      res.status(500).json({ message: 'Could not fetch your resources. Try again later', error: err.message });
     }
 };
   

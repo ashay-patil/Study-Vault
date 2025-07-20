@@ -30,12 +30,12 @@ const GetMyResources = () => {
         if (res.data !== null) {
           setResources(res.data);
         } else {
-          setErrorMsg('Failed to fetch your resources.');
+          setErrorMsg(res.data.msg || 'Failed to fetch your resources. Try again later');
         }
       } catch (err) {
         setErrorMsg(
           err.response?.data?.message ||
-            'Failed to fetch your resources. Please try again.'
+            'Failed to fetch your resources. Try again later'
         );
       } finally {
         setLoading(false);
