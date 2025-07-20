@@ -66,6 +66,12 @@ const Navbar = () => {
     background: '#444',
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/');
+  };
+
   return (
     <nav style={navStyle}>
       <div style={linksStyle}>
@@ -86,6 +92,7 @@ const Navbar = () => {
         {user ? (
           <span>
             Welcome, <b>{user.name || user.email || 'User'}</b>
+            <button onClick={() => handleLogout()}>Logout</button>
           </span>
         ) : (
           <span onClick={() => handleNavigate('/login')}>Login</span>

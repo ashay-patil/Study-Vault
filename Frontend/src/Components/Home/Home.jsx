@@ -11,7 +11,7 @@ const Home = () => {
       padding: '2.5rem'
     }}>
       <h1 style={{ color: '#1976d2', marginBottom: '1.5rem', textAlign: 'center' }}>
-        Welcome to the Resource Sharing Platform!
+        Welcome to Study Vault : The Resource Sharing Platform!
       </h1>
       <p style={{ fontSize: '1.15rem', marginBottom: '1.5rem', textAlign: 'center' }}>
         This platform is designed to help students and educators share, discover, and review academic resources such as notes, PDFs, and study materials.

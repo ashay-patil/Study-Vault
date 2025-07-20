@@ -53,10 +53,7 @@ const CreateResource = () => {
         pdf: null,
       });
     } catch (err) {
-      setErrorMsg(
-        err.response?.data?.message ||
-          'Failed to upload resource. Please try again.'
-      );
+      setErrorMsg(err.response.data.msg || 'Failed to upload resource. Try again later');
     } finally {
       setLoading(false);
     }

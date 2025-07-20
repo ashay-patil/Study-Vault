@@ -42,7 +42,7 @@ const GetAllResources = () => {
             setTotalPages(res.data.totalPages || 1);
             setCurrentPage(res.data.currentPage || 1);
         } catch (err) {
-            setError('Could not load resources.');
+            setError(err.response.data.msg || 'Could not load resources. Try again later');
         } finally {
             setLoading(false);
         }

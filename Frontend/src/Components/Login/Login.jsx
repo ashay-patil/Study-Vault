@@ -26,7 +26,7 @@ const Login = () => {
         setError(res.data.msg || 'Login failed');
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError(err.response.data.msg || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
