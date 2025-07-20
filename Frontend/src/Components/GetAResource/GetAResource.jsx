@@ -97,7 +97,7 @@ const GetAResource = () => {
                 <strong>Description:</strong> {resource.description || 'No description'}
             </div>
             <div style={{ marginBottom: '1rem' }}>
-                <strong>Uploaded By:</strong> {resource.uploadedBy?.name || 'Unknown'}
+                <strong>Uploaded By:</strong> {resource.uploadedByEmail || 'Unknown'}
             </div>
             <div style={{ marginBottom: '1rem' }}>
                 <strong>Average Rating:</strong> {resource.averageRating ? resource.averageRating.toFixed(1) : 'No ratings yet'}
@@ -134,7 +134,7 @@ const GetAResource = () => {
                             }}
                         >
                             <div>
-                                <strong>{rev.name || 'Anonymous'}</strong> &nbsp;
+                                <strong>{rev.email || 'Anonymous'}</strong> &nbsp;
                                 <span style={{ color: '#f39c12' }}>
                                     {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
                                 </span>

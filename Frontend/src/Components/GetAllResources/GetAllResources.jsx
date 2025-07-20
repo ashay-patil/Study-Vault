@@ -140,7 +140,10 @@ const GetAllResources = () => {
                                         <div>
                                             <strong>Rating:</strong> {resource.averageRating?.toFixed(1) ?? 'N/A'}
                                         </div>
-                                        
+                                        <div>
+                                            <strong>Uploaded By:</strong>{' '}
+                                            {resource.uploadedByEmail || 'Unknown'}
+                                        </div>
                                     </div>
                                     <button
                                         style={{
