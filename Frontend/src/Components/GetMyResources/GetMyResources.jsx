@@ -85,7 +85,7 @@ const GetMyResources = () => {
             {resource.pdfUrl && (
               <a
                 href={resource.pdfUrl}
-                download
+                target="_blank"
                 style={{
                   display: 'inline-block',
                   marginTop: 8,
@@ -93,7 +93,7 @@ const GetMyResources = () => {
                   textDecoration: 'underline',
                 }}
               >
-                Download PDF
+                View PDF
               </a>
             )}
             <div style={{ fontSize: 12, color: '#888', marginTop: 8 }}>
