@@ -31,13 +31,13 @@ const uploadResource = (data) => {
                 'string.base': 'Description must be a string',
                 'string.max': 'Description must be at most 500 characters'
             }),
-        fileUrl: Joi.string().uri().required()
-            .messages({
-                'string.base': 'File URL must be a string',
-                'string.empty': 'File URL is required',
-                'string.uri': 'File URL must be a valid URI',
-                'any.required': 'File URL is required'
-            })
+        // pdfUrl: Joi.string().uri().required()
+        //     .messages({
+        //         'string.base': 'File URL must be a string',
+        //         'string.empty': 'File URL is required',
+        //         'string.uri': 'File URL must be a valid URI',
+        //         'any.required': 'File URL is required'
+        //     })
     });
     return schema.validate(data);
 };

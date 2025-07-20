@@ -4,7 +4,7 @@ const {getAllResources, getSingleResource} = require('../controllers/resource-pu
 const {getResourcesValidationMiddleware, getResourceByIdValidationMiddleware, getReviewsValidationMiddleware} = require('../middlewares/resource-public-validation');
 
 router.get('/get-all-resources', getResourcesValidationMiddleware, getAllResources);
-router.get('/get-single-resource/:id', getResourceByIdValidationMiddleware, getSingleResource);
-router.get('/get-reviews/:resourceId', getReviewsValidationMiddleware, getReviews);
+router.get('/get-single-resource/:id', getSingleResource);
+// router.get('/get-reviews/:resourceId', getReviewsValidationMiddleware, getReviews);
 
 module.exports = router;

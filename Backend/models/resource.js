@@ -10,6 +10,7 @@ const resourceSchema = new mongoose.Schema({
     description: String,
     pdfUrl: { type: String, required: true },
     uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    uploadedByEmail: { type: String, required: true },
     reviews: [reviewSchema],
     averageRating: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now }

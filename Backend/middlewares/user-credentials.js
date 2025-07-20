@@ -27,8 +27,11 @@ const resendOTPCredentialMiddleware = (req, res, next)=>{
 }
 
 const verifyOTPCredentialMiddleware = (req, res, next)=>{
+    console.log("Reached verifyOTPCredentialMiddleware");
     const {error} = verifyOTP(req.body);
+    console.log("Reached verifyOTPCredentialMiddleware 2");
     if(error){
+        console.log(error.details[0].message);
         throw new InvalidCredentials(error.details[0].message);
     }
     next();

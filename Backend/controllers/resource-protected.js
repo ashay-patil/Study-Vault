@@ -7,9 +7,10 @@ const uploadResource = async (req, res) => {
     try {
       const { title, subject, semester, description } = req.body;
       const url = req.file?.path;
+      console.log("url",url);
       const result = await uploadToCloudinary(url);
       const pdfUrl = result.secure_url;
-  
+      console.log("pdfUrl",pdfUrl);
       if (!pdfUrl) return res.status(400).json({ message: 'PDF is required' });
   
       const newResource = new Resource({
@@ -18,12 +19,14 @@ const uploadResource = async (req, res) => {
         semester,
         description,
         pdfUrl,
-        uploadedBy: req.user._id
+        uploadedBy: req.user.id,
+        uploadedByEmail: req.user.email
       });
   
       const saved = await newResource.save();
       res.status(201).json(saved);
     } catch (err) {
+      console.log(err.message);
       res.status(500).json({ message: 'Upload failed', error: err.message });
     }
 };
@@ -32,8 +35,11 @@ const uploadResource = async (req, res) => {
 // GET /api/resources/my
 const getMyResources = async (req, res) => {
     try {
-      const myResources = await Resource.find({ uploadedBy: req.user._id }).sort({ createdAt: -1 });
+      console.log("Reached getMyResources controller");
+      console.log("req.user.id",req.user.id);
+      const myResources = await Resource.find({ uploadedBy: req.user.id }).sort({ createdAt: -1 });
       res.json(myResources);
+      console.log("myResources",myResources);
     } catch (err) {
       res.status(500).json({ message: 'Error fetching your resources', error: err.message });
     }
@@ -46,7 +52,7 @@ const updateResource = async (req, res) => {
       const resource = await Resource.findById(req.params.id);
   
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
-      if (resource.uploadedBy.toString() !== req.user._id.toString()) {
+      if (resource.uploadedBy.toString() !== req.user.id.toString()) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
   
@@ -73,24 +79,27 @@ const updateResource = async (req, res) => {
 };
   
 
-// POST /api/resources/:id/reviews
 const addReview = async (req, res) => {
     try {
       const { rating, comment } = req.body;
+      console.log("Reached addReview controller");
+      console.log("req.body",req.body);
+      console.log("req.params.id",req.params.id);
+      console.log("req.user.id",req.user.id);
       const resource = await Resource.findById(req.params.id);
-  
+      console.log("resource",resource);
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
   
       const alreadyReviewed = resource.reviews.find(
-        (rev) => rev.user.toString() === req.user._id.toString()
+        (rev) => rev.user.toString() === req.user.id.toString()
       );
       if (alreadyReviewed) {
         return res.status(400).json({ message: 'You already reviewed this resource' });
       }
   
       const newReview = {
-        user: req.user._id,
-        name: req.user.name,
+        user: req.user.id,
+        email: req.user.email,
         rating: Number(rating),
         comment
       };
@@ -116,7 +125,7 @@ const deleteResource = async (req, res) => {
       const resource = await Resource.findById(req.params.id);
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
   
-      if (resource.uploadedBy.toString() !== req.user._id.toString()) {
+      if (resource.uploadedBy.toString() !== req.user.id.toString()) {
         return res.status(403).json({ message: 'Unauthorized' });
       }
   

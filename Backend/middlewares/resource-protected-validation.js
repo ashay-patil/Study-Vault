@@ -4,6 +4,7 @@ const { uploadResource, updateResource, addReview } = require("../validators/res
 const uploadResourceValidationMiddleware = (req, res, next) => {
     const { error } = uploadResource(req.body);
     if (error) {
+        console.log("validation error",error.details[0].message);
         throw new InvalidResource(error.details[0].message);
     }
     next();
@@ -12,6 +13,7 @@ const uploadResourceValidationMiddleware = (req, res, next) => {
 const updateResourceValidationMiddleware = (req, res, next) => {
     const { error } = updateResource(req.body);
     if (error) {
+        console.log(error.details[0].message);
         throw new InvalidResource(error.details[0].message);
     }
     next();
@@ -20,6 +22,7 @@ const updateResourceValidationMiddleware = (req, res, next) => {
 const addReviewValidationMiddleware = (req, res, next) => {
     const { error } = addReview(req.body);
     if (error) {
+        console.log(error.details[0].message);
         throw new InvalidResource(error.details[0].message);
     }
     next();

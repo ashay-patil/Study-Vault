@@ -6,6 +6,7 @@ const {StatusCodes} = require('http-status-codes');
 const generateOTP = require('../utils/generateOTP');
 
 const register = async (req, res)=>{
+    console.log("Reached register controller");
     const {email, password} = req.body;
     const userExist = await User.findOne({email});
     if(userExist){
@@ -25,6 +26,7 @@ const register = async (req, res)=>{
 }
 
 const verifyOTP = async (req, res)=>{
+    console.log("Reached verifyOTP controller");
     const {email, otp} = req.body;
     const user = await User.findOne({email});
     if(!user){
@@ -46,6 +48,7 @@ const verifyOTP = async (req, res)=>{
 
 
 const resendOTP = async (req, res)=>{
+    console.log("Reached resendOTP controller");
     const {email} = req.body;
     const user = await User.findOne({email});
     if(!user){
@@ -64,6 +67,7 @@ const resendOTP = async (req, res)=>{
 }
 
 const login = async (req,res)=>{
+    console.log("Reached login controller");
     const {email, password} = req.body;
     const user = await User.findOne({email});
     if(!user){
@@ -80,4 +84,10 @@ const login = async (req,res)=>{
     res.status(StatusCodes.OK).json({success : true, token});
 }
 
-module.exports = {register, verifyOTP, resendOTP, login};
+const getUser = async (req, res)=>{
+    console.log("Reached getUser controller");
+    const user = await User.findById(req.user.id);
+    res.status(StatusCodes.OK).json({success : true, user});
+}
+
+module.exports = {register, verifyOTP, resendOTP, login, getUser, getAnyUser};
