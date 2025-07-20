@@ -90,4 +90,4 @@ const getUser = async (req, res)=>{
     res.status(StatusCodes.OK).json({success : true, user});
 }
 
-module.exports = {register, verifyOTP, resendOTP, login, getUser, getAnyUser};
+module.exports = {register, verifyOTP, resendOTP, login, getUser};

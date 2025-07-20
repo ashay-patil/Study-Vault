@@ -105,7 +105,7 @@ const CreateResource = () => {
           <label>
             Semester:
             <input
-              type="text"
+              type="number"
               name="semester"
               value={form.semester}
               onChange={handleChange}

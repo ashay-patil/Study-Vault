@@ -15,7 +15,6 @@ title: { type: String, required: true, trim: true },
 
 */
 
-// GET /api/resources?page=1&search=math&subject=Math
 const getAllResources = async (req, res) => {
     try {
       const { page = 1, search = '', subject = '', semester = '' } = req.query;
@@ -24,7 +23,7 @@ const getAllResources = async (req, res) => {
   
       const filter = {
         ...(subject && { subject }),
-        ...(semester && { semester }),
+        ...(semester && { semester : Number(semester) }),
         ...(search && {
           $or: [
             { title: { $regex: search, $options: 'i' } },

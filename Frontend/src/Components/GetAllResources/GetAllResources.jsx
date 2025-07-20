@@ -98,7 +98,7 @@ const GetAllResources = () => {
                     onChange={handleFilterChange}
                 />
                 <input
-                    type="text"
+                    type="number"
                     name="semester"
                     placeholder="Semester"
                     value={filters.semester}

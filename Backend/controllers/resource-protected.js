@@ -2,7 +2,6 @@ const Resource = require('../models/resource');
 const uploadToCloudinary = require('../services/cloudinaryService');
 
 
-// POST /api/resources
 const uploadResource = async (req, res) => {
     try {
       const { title, subject, semester, description } = req.body;
@@ -16,7 +15,7 @@ const uploadResource = async (req, res) => {
       const newResource = new Resource({
         title,
         subject,
-        semester,
+        semester : Number(semester),
         description,
         pdfUrl,
         uploadedBy: req.user.id,
@@ -32,7 +31,6 @@ const uploadResource = async (req, res) => {
 };
   
 
-// GET /api/resources/my
 const getMyResources = async (req, res) => {
     try {
       console.log("Reached getMyResources controller");
@@ -46,7 +44,6 @@ const getMyResources = async (req, res) => {
 };
   
 
-// PUT /api/resources/:id
 const updateResource = async (req, res) => {
     try {
       const resource = await Resource.findById(req.params.id);
@@ -68,7 +65,7 @@ const updateResource = async (req, res) => {
   
       resource.title = title || resource.title;
       resource.subject = subject || resource.subject;
-      resource.semester = semester || resource.semester;
+      resource.semester = semester ? Number(semester) : resource.semester;
       resource.description = description || resource.description;
   
       const updated = await resource.save();
@@ -119,7 +116,6 @@ const addReview = async (req, res) => {
 };
 
 
-// DELETE /api/resources/:id
 const deleteResource = async (req, res) => {
     try {
       const resource = await Resource.findById(req.params.id);

@@ -6,7 +6,7 @@ const User = require('./user');
 const resourceSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
     subject: { type: String, required: true },
-    semester: { type: String, required: true },
+    semester: { type: Number, required: true },
     description: String,
     pdfUrl: { type: String, required: true },
     uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
