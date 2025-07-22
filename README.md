@@ -6,6 +6,49 @@ From OTP-secured registration to blazing-fast Cloudinary file delivery, this pro
 
 ---
 
+### Working
+
+The **Study Vault** project streamlines the process of sharing and accessing academic resources through a secure and user-friendly platform. Here’s how it works:
+
+1. **User Registration & Verification**
+   - New users sign up with their email and password.
+   - An OTP is sent to their email for verification, ensuring only genuine users gain access.
+   - Passwords are securely hashed before storage.
+
+2. **Login & Authentication**
+   - Users log in using their credentials.
+   - JWT tokens are issued for secure, persistent sessions.
+
+3. **Uploading Resources**
+   - Authenticated users can upload notes and study materials (PDFs).
+   - Files are validated and uploaded directly to Cloudinary for fast, reliable storage.
+   - Users can add metadata (title, subject, semester, description) to make resources easily discoverable.
+
+4. **Resource Management**
+   - Users have a personal dashboard to view, edit, or delete their uploaded study resources.
+   - All actions are protected to ensure only the owner can modify their content.
+
+5. **Exploring & Downloading**
+   - Anyone (even without an account) can browse, search, and filter the study resources by title, subject, semester, or description.
+   - Resources are displayed with details and can be downloaded instantly via secure Cloudinary links.
+
+6. **Review & Rating System**
+   - Logged-in users can rate resources (1–5 stars) to help others assess quality.
+   - Ratings are displayed for each resource.
+
+7. **Security & Validation**
+   - All forms are validated on backend using Joi to prevent invalid data.
+   - API endpoints are protected, with authorization.
+
+8. **Performance & Scalability**
+   - Pagination ensures fast browsing even with a large number of resources.
+   - Cloudinary integration guarantees quick file delivery and scalability.
+
+In summary, Study Vault offers a seamless, secure, and efficient way for students to share and discover study materials, empowering collaborative learning and academic success.
+
+
+---
+
 ## 🚀 Features
 
 ### 🔐 **Robust User Authentication & Security**
