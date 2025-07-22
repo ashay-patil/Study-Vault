@@ -12,6 +12,7 @@ const register = async (req, res)=>{
     if(userExist){
         return res.status(StatusCodes.CONFLICT).json({success : false ,msg:'User exists already'});
     }
+    console.log("Password",password);
     const hashpass = await bcrypt.hash(password, 10);
     const otp = generateOTP();
     const otpExpiresAt = new Date(Date.now() + 5*60*1000);

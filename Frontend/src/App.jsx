@@ -8,7 +8,7 @@ import GetAResource from './Components/GetAResource';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Register from './Components/Register';
-
+import UpdateMyResource from './Components/UpdateMyResource';
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
           <Route path="/getMyResources" element={<GetMyResources />} />
           <Route path="/createResource" element={<CreateResource />} />
           <Route path="/resource/:id" element={<GetAResource />} />
+          <Route path="/update-resource/:id" element={<UpdateMyResource />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

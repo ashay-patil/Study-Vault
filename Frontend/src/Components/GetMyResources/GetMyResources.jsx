@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const GetMyResources = () => {
+  const navigate = useNavigate();
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
@@ -45,6 +47,27 @@ const GetMyResources = () => {
     fetchMyResources();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to delete this resource?");
+    if(!confirm) return;
+    try {
+      const {data} = await axios.delete(`http://localhost:3000/api/v1/resources/protected/delete-my-resource/${id}`,{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      console.log("data",data);
+      const newResources = await axios.get('http://localhost:3000/api/v1/resources/protected/get-my-resources',{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setResources(newResources.data);
+    } catch (err) {
+      console.log("err",err);
+      setErrorMsg(err.response?.data?.message || 'Failed to delete resource. Try again later');
+    }
+  }
   return (
     <div style={{ maxWidth: 800, margin: '2rem auto', padding: '1rem' }}>
       <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>My Uploaded Resources</h2>
@@ -98,6 +121,15 @@ const GetMyResources = () => {
             )}
             <div style={{ fontSize: 12, color: '#888', marginTop: 8 }}>
               Uploaded: {new Date(resource.createdAt).toLocaleString()}
+            </div>
+            <div className="update">
+              <button className="update-btn" onClick={()=>{
+                navigate(`/update-resource/${resource._id}`);
+              }}>Edit Resource</button>
+            </div>
+            <div className="delete">
+              <button className="delete-btn" onClick={()=>{handleDelete(resource._id)
+              }}>Delete Resource</button>
             </div>
           </div>
         ))}
