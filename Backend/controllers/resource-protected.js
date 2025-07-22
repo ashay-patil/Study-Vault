@@ -60,6 +60,7 @@ const updateResource = async (req, res) => {
         const url = req.file?.path;
         const result = await uploadToCloudinary(url);
         pdfUrl = result.secure_url;
+        console.log("Updated pdfUrl",pdfUrl);
 
       }
   
@@ -67,7 +68,7 @@ const updateResource = async (req, res) => {
       resource.subject = subject || resource.subject;
       resource.semester = semester ? Number(semester) : resource.semester;
       resource.description = description || resource.description;
-  
+      resource.pdfUrl = pdfUrl || resource.pdfUrl;
       const updated = await resource.save();
       res.json(updated);
     } catch (err) {
@@ -126,6 +127,7 @@ const deleteResource = async (req, res) => {
       }
   
       await resource.deleteOne();
+      console.log("Resource deleted successfully");
       res.json({ message: 'Resource deleted successfully' });
     } catch (err) {
       res.status(500).json({ message: 'Delete failed', error: err.message });

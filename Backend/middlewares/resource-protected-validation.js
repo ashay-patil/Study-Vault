@@ -13,9 +13,10 @@ const uploadResourceValidationMiddleware = (req, res, next) => {
 };
 
 const updateResourceValidationMiddleware = (req, res, next) => {
+    console.log("req.body",req.body);
     const { error } = updateResource(req.body);
     if (error) {
-        console.log(error.details[0].message);
+        console.log("validation error",error.details[0].message);
         throw new InvalidResource(error.details[0].message);
     }
     next();
