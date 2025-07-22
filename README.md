@@ -22,7 +22,7 @@ From OTP-secured registration to blazing-fast Cloudinary file delivery, this pro
 
 ### 📂 **Personalized Resource Dashboard**
 
-* Upload your own notes from a private panel (Delete and Update will be added soon .... )
+* Upload your own notes from a private panel with Delete, Edit Functionality.
 * Authenticated access control ensures data safety and user privacy
 
 ### 🔍 **Explore & Discover Without Signup**
