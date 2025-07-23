@@ -64,7 +64,7 @@ const GetAResource = () => {
             fetchResource(); // Refresh resource to show new review
         } catch (err) {
             console.log(err);
-            setReviewError(err.response.data.message || 'Could not submit review. Try again later');
+            setReviewError(err.response.data.message || err.response.data.msg || 'Could not submit review. Try again later');
         } finally {
             setReviewSubmitting(false);
         }
