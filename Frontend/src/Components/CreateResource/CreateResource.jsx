@@ -1,4 +1,4 @@
-
+import './CreateResource.css';
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -60,19 +60,12 @@ const CreateResource = () => {
   };
 
   return (
-    <div style={{
-      maxWidth: '600px',
-      margin: '2rem auto',
-      background: '#fff',
-      borderRadius: '10px',
-      boxShadow: '0 2px 12px #e0e0e0',
-      padding: '2rem'
-    }}>
-      <h2 style={{ color: '#1976d2', marginBottom: '1.5rem', textAlign: 'center' }}>
+    <div className='create-resource-container'>
+      <h2 className='create-resource-title'>
         Upload a New Resource
       </h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div style={{ marginBottom: '1rem' }}>
+        <div className='create-resource-form-group'>
           <label>
             Title:
             <input
@@ -85,7 +78,7 @@ const CreateResource = () => {
             />
           </label>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
+        <div className='create-resource-form-group'>
           <label>
             Subject:
             <input
@@ -94,11 +87,10 @@ const CreateResource = () => {
               value={form.subject}
               onChange={handleChange}
               required
-              style={{ width: '100%', padding: '8px', marginTop: '4px' }}
             />
           </label>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
+        <div className='create-resource-form-group'>
           <label>
             Semester:
             <input
@@ -107,24 +99,22 @@ const CreateResource = () => {
               value={form.semester}
               onChange={handleChange}
               required
-              style={{ width: '100%', padding: '8px', marginTop: '4px' }}
             />
           </label>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
+        <div className='create-resource-form-group'>
           <label>
             Description:
-            <textarea
+            <textarea 
               name="description"
               value={form.description}
               onChange={handleChange}
               required
               rows={4}
-              style={{ width: '100%', padding: '8px', marginTop: '4px' }}
             />
           </label>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
+        <div className='create-resource-form-group'>
           <label>
             PDF File:
             <input
@@ -133,32 +123,23 @@ const CreateResource = () => {
               accept="application/pdf"
               onChange={handleChange}
               required
-              style={{ display: 'block', marginTop: '4px' }}
             />
           </label>
         </div>
         <button
           type="submit"
           disabled={loading}
-          style={{
-            background: '#1976d2',
-            color: '#fff',
-            padding: '10px 24px',
-            border: 'none',
-            borderRadius: '5px',
-            fontWeight: 600,
-            cursor: loading ? 'not-allowed' : 'pointer'
-          }}
+          className='create-resource-button'
         >
           {loading ? 'Uploading...' : 'Upload Resource'}
         </button>
         {successMsg && (
-          <div style={{ color: 'green', marginTop: '1rem', textAlign: 'center' }}>
+          <div className='create-resource-success-msg'>
             {successMsg}
           </div>
         )}
         {errorMsg && (
-          <div style={{ color: 'red', marginTop: '1rem', textAlign: 'center' }}>
+          <div className='create-resource-error-msg'>
             {errorMsg}
           </div>
         )}

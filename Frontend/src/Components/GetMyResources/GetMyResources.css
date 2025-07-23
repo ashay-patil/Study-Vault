@@ -1,0 +1,190 @@
+
+.get-my-resources-container {
+  padding: 2.5rem 2rem;
+  max-width: 1200px;
+  margin: 3rem auto 2rem auto;
+  background: linear-gradient(120deg, #f8fafc 60%, #e9eafc 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.13);
+  animation: fadeIn 0.7s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.get-my-resources-title {
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 2.2rem;
+  color: #3a3a5a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+}
+
+.get-my-resources-loading,
+.get-my-resources-error,
+.get-my-resources-no-resources {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background: #fff7f7;
+  color: #e53e3e;
+  box-shadow: 0 2px 8px rgba(255, 85, 85, 0.07);
+}
+
+.get-my-resources-loading {
+  color: #3182ce;
+  background: #e6f0ff;
+  font-weight: 500;
+}
+
+.get-my-resources-no-resources {
+  color: #718096;
+  background: #f7fafc;
+  font-weight: 500;
+}
+
+.get-my-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.get-my-resources-resource {
+  background: linear-gradient(120deg, #fff 80%, #f0f4ff 100%);
+  border-radius: 16px;
+  padding: 1.7rem 1.3rem 1.3rem 1.3rem;
+  box-shadow: 0 4px 18px rgba(102, 126, 234, 0.10);
+  transition: transform 0.22s cubic-bezier(.4,2,.6,1), box-shadow 0.22s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  border: 1.5px solid #e2e8f0;
+  position: relative;
+}
+
+.get-my-resources-resource:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 10px 32px rgba(102, 126, 234, 0.18);
+  border-color: #a3bffa;
+}
+
+.get-my-resources-resource-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #4c51bf;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.get-my-resources-resource-subject {
+  font-size: 1.05rem;
+  color: #5a67d8;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.get-my-resources-resource-description {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.7rem;
+  background: #f7fafc;
+  border-radius: 7px;
+  padding: 0.5rem 0.7rem;
+}
+
+.get-my-resources-resource-uploaded {
+  font-size: 0.97rem;
+  color: #718096;
+  margin-bottom: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.get-my-resources-resource-pdf {
+  display: inline-block;
+  margin: 0.5rem 0 0.7rem 0;
+  color: #3182ce;
+  background: #e6f0ff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(49, 130, 206, 0.07);
+}
+
+.get-my-resources-resource-pdf:hover {
+  background: #3182ce;
+  color: #fff;
+}
+
+.get-my-resources-update,
+.get-my-resources-delete {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.get-my-resources-update-btn,
+.get-my-resources-delete-btn {
+  padding: 0.55rem 1.1rem;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: background 0.22s, color 0.22s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
+}
+
+.get-my-resources-update-btn {
+  background: linear-gradient(90deg, #667eea 60%, #5a67d8 100%);
+  color: #fff;
+}
+
+.get-my-resources-update-btn:hover {
+  background: linear-gradient(90deg, #5a67d8 60%, #434190 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.13);
+}
+
+.get-my-resources-delete-btn {
+  background: linear-gradient(90deg, #f56565 60%, #e53e3e 100%);
+  color: #fff;
+}
+
+.get-my-resources-delete-btn:hover {
+  background: linear-gradient(90deg, #e53e3e 60%, #c53030 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(245, 101, 101, 0.13);
+}
+
+@media (max-width: 900px) {
+  .get-my-resources-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .get-my-resources-container {
+    padding: 1.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .get-my-resources-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .get-my-resources-resource {
+    padding: 1rem 0.7rem;
+    min-height: 220px;
+  }
+}

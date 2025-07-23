@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 const RegisterForm = ({
   name,
   setName,
@@ -13,48 +14,45 @@ const RegisterForm = ({
   error,
   success,
 }) => (
-  <form onSubmit={handleSubmit}>
-    <div style={{ marginBottom: 12 }}>
-      <label>
+  <form onSubmit={handleSubmit} className='register-form'>
+    <div>
+      <label className='register-label'>
         Name:
         <input
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
           required
-          style={{ width: '100%', padding: 8, marginTop: 4 }}
         />
       </label>
     </div>
-    <div style={{ marginBottom: 12 }}>
-      <label>
+    <div>
+      <label className='register-label'>
         Email:
         <input
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
           required
-          style={{ width: '100%', padding: 8, marginTop: 4 }}
         />
       </label>
     </div>
-    <div style={{ marginBottom: 12 }}>
-      <label>
+    <div>
+      <label className='register-label'>
         Password:
         <input
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
           required
-          style={{ width: '100%', padding: 8, marginTop: 4 }}
         />
       </label>
     </div>
-    <button type="submit" disabled={loading} style={{ padding: 8, width: '100%' }}>
+    <button type="submit" disabled={loading} className='register-button'>
       {loading ? 'Registering...' : 'Register'}
     </button>
-    {error && <div style={{ color: 'red', marginTop: 12 }}>{error}</div>}
-    {success && <div style={{ color: 'green', marginTop: 12 }}>{success}</div>}
+    {error && <div className='register-error'>{error}</div>}
+    {success && <div className='register-success'>{success}</div>}
   </form>
 );
 
@@ -67,29 +65,28 @@ const OtpForm = ({
   handleResendOtp,
   resendOtpLoading,
 }) => (
-  <form onSubmit={handleOtpSubmit}>
-    <div style={{ marginBottom: 12 }}>
-      <label>
+  <form onSubmit={handleOtpSubmit} className='register-form'>
+    <div>
+      <label className='register-label'>
         Enter OTP:
         <input
           type="text"
           value={otp}
           onChange={e => setOtp(e.target.value)}
           required
-          style={{ width: '100%', padding: 8, marginTop: 4 }}
         />
       </label>
     </div>
-    <div className="resend-otp" style={{ marginBottom: 12 }}>
-      <button type="button" onClick={handleResendOtp} disabled={resendOtpLoading} style={{ padding: 8, width: '100%' }}>
+    <div className="resend-otp">
+      <button type="button" onClick={handleResendOtp} disabled={resendOtpLoading} className='register-button'>
         Resend OTP
       </button>
     </div>
-    <button type="submit" disabled={otpLoading} style={{ padding: 8, width: '100%' }}>
+    <button type="submit" disabled={otpLoading} className='register-button'>
       {otpLoading ? 'Verifying OTP...' : 'Verify OTP'}
     </button>
     {otpStatus && (
-      <div style={{ color: otpStatus.includes('success') ? 'green' : 'red', marginTop: 12 }}>
+      <div className='register-otp-status'>
         {otpStatus}
       </div>
     )}
@@ -171,8 +168,8 @@ const Register = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: 24 }}>
-      <h2>Register</h2>
+    <div className='register-container'>
+      <h2 className='register-title'>Register</h2>
       {!success ? (
         <RegisterForm
           name={name}

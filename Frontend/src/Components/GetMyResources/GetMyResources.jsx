@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import './GetMyResources.css';
 
 const GetMyResources = () => {
   const navigate = useNavigate();
@@ -69,37 +69,31 @@ const GetMyResources = () => {
     }
   }
   return (
-    <div style={{ maxWidth: 800, margin: '2rem auto', padding: '1rem' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>My Uploaded Resources</h2>
-      {loading && <div style={{ textAlign: 'center' }}>Loading...</div>}
+    <div className='get-my-resources-container'>
+      <h2 className='get-my-resources-title'>My Uploaded Resources</h2>
+      {loading && <div className='get-my-resources-loading'>Loading...</div>}
       {errorMsg && (
-        <div style={{ color: 'red', textAlign: 'center', marginBottom: '1rem' }}>
+        <div className='get-my-resources-error'>
           {errorMsg}
         </div>
       )}
       {!loading && !errorMsg && resources.length === 0 && (
-        <div style={{ textAlign: 'center', color: '#888' }}>
+        <div className='get-my-resources-no-resources'>
           You have not uploaded any resources yet.
         </div>
       )}
-      <div>
+      <div className='get-my-resources-grid'>
         {resources.map((resource) => (
           <div
             key={resource._id}
-            style={{
-              border: '1px solid #ddd',
-              borderRadius: 8,
-              padding: '1rem',
-              marginBottom: '1.5rem',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-            }}
+            className='get-my-resources-resource'
           >
-            <h3 style={{ margin: 0 }}>{resource.title}</h3>
-            <div style={{ color: '#555', marginBottom: 8 }}>
+            <h3 className='get-my-resources-resource-title'>{resource.title}</h3>
+            <div className='get-my-resources-resource-subject'>
               <b>Subject:</b> {resource.subject} &nbsp; | &nbsp;
               <b>Semester:</b> {resource.semester}
             </div>
-            <div style={{ marginBottom: 8 }}>
+            <div className='get-my-resources-resource-description'>
               <b>Description:</b> {resource.description}
             </div>
             <div>
@@ -109,26 +103,21 @@ const GetMyResources = () => {
               <a
                 href={resource.pdfUrl}
                 target="_blank"
-                style={{
-                  display: 'inline-block',
-                  marginTop: 8,
-                  color: '#1976d2',
-                  textDecoration: 'underline',
-                }}
+                className='get-my-resources-resource-pdf'
               >
                 View PDF
               </a>
             )}
-            <div style={{ fontSize: 12, color: '#888', marginTop: 8 }}>
+            <div className='get-my-resources-resource-uploaded'>
               Uploaded: {new Date(resource.createdAt).toLocaleString()}
             </div>
-            <div className="update">
-              <button className="update-btn" onClick={()=>{
+            <div className="get-my-resources-update">
+              <button className="get-my-resources-update-btn" onClick={()=>{
                 navigate(`/update-resource/${resource._id}`);
               }}>Edit Resource</button>
             </div>
-            <div className="delete">
-              <button className="delete-btn" onClick={()=>{handleDelete(resource._id)
+            <div className="get-my-resources-delete">
+              <button className="get-my-resources-delete-btn" onClick={()=>{handleDelete(resource._id)
               }}>Delete Resource</button>
             </div>
           </div>

@@ -1,0 +1,152 @@
+/* Container */
+.get-all-resources-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+.get-all-resources-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+/* Filter Form */
+.get-all-resources-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.get-all-resources-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-width: 200px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.get-all-resources-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.get-all-resources-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.get-all-resources-button:hover {
+  background-color: #0056b3;
+}
+
+/* Loading, Error, No Resources */
+.get-all-resources-loading,
+.get-all-resources-error,
+.get-all-resources-no-resources {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 2rem;
+}
+
+/* Grid */
+.get-all-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Card */
+.get-all-resources-resource {
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.get-all-resources-resource:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.get-all-resources-resource-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.get-all-resources-resource-rating,
+.get-all-resources-resource-uploaded-by,
+.get-all-resources-resource-subject,
+.get-all-resources-resource-semester {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.4rem;
+}
+
+/* View Button */
+.get-all-resources-resource-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  align-self: flex-start;
+  transition: background-color 0.3s ease;
+}
+
+.get-all-resources-resource-button:hover {
+  background-color: #218838;
+}
+
+/* Pagination */
+.get-all-resources-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 0.5rem;
+}
+
+.get-all-resources-pagination-button {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.get-all-resources-pagination-button:hover {
+  background-color: #ddd;
+}
+
+.get-all-resources-pagination-button:disabled {
+  background-color: #007bff;
+  color: white;
+  cursor: default;
+}
