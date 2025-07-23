@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './GetAllResources.css';
 const PAGE_SIZE = 8;
 
 const GetAllResources = () => {
@@ -80,15 +80,16 @@ const GetAllResources = () => {
     };
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <h2>All Resources</h2>
-            <form onSubmit={handleFilterSubmit} style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className='get-all-resources-container'>
+            <h2 className='get-all-resources-title'>All Resources</h2>
+            <form onSubmit={handleFilterSubmit} className='get-all-resources-form'>
                 <input
                     type="text"
                     name="search"
                     placeholder="Search by title or description"
                     value={filters.search}
                     onChange={handleFilterChange}
+                    className='get-all-resources-input'
                 />
                 <input
                     type="text"
@@ -96,6 +97,7 @@ const GetAllResources = () => {
                     placeholder="Subject"
                     value={filters.subject}
                     onChange={handleFilterChange}
+                    className='get-all-resources-input'
                 />
                 <input
                     type="number"
@@ -103,58 +105,45 @@ const GetAllResources = () => {
                     placeholder="Semester"
                     value={filters.semester}
                     onChange={handleFilterChange}
+                    className='get-all-resources-input'
                 />
-                <button type="submit">Apply Filters</button>
+                <button type="submit" className='get-all-resources-button'>Apply Filters</button>
             </form>
             {loading ? (
-                <div>Loading...</div>
+                <div className='get-all-resources-loading'>Loading...</div>
             ) : error ? (
-                <div style={{ color: 'red' }}>{error}</div>
+                <div className='get-all-resources-error'>{error}</div>
             ) : (
                 <>
                     <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                            gap: '1.5rem',
-                        }}
+                        className='get-all-resources-grid'
                     >
                         {resources.length === 0 ? (
-                            <div style={{ gridColumn: '1/-1' }}>No resources found.</div>
+                            <div className='get-all-resources-no-resources'>No resources found.</div>
                         ) : (
                             resources.map((resource) => {
                                 return <div
                                     key={resource._id}
-                                    style={{
-                                        border: '1px solid #ccc',
-                                        borderRadius: '8px',
-                                        padding: '1rem',
-                                        background: '#fafafa',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'space-between',
-                                    }}
+                                    className='get-all-resources-resource'
                                 >
                                     <div>
-                                        <h3 style={{ margin: '0 0 0.5rem 0' }}>{resource.title}</h3>
-                                        <div>
+                                        <h3 className='get-all-resources-resource-title'>{resource.title}</h3>
+                                        <div className='get-all-resources-resource-rating'>
                                             <strong>Rating:</strong> {resource.averageRating?.toFixed(1) ?? 'N/A'}
                                         </div>
-                                        <div>
+                                        <div className='get-all-resources-resource-uploaded-by'>
                                             <strong>Uploaded By:</strong>{' '}
                                             {resource.uploadedByEmail || 'Unknown'}
                                         </div>
+                                        <div className='get-all-resources-resource-subject'>
+                                            <strong>Subject:</strong> {resource.subject}
+                                        </div>
+                                        <div className='get-all-resources-resource-semester'>
+                                            <strong>Semester:</strong> {resource.semester}
+                                        </div>
                                     </div>
                                     <button
-                                        style={{
-                                            marginTop: '1rem',
-                                            padding: '0.5rem 1rem',
-                                            background: '#1976d2',
-                                            color: '#fff',
-                                            border: 'none',
-                                            borderRadius: '4px',
-                                            cursor: 'pointer',
-                                        }}
+                                        className='get-all-resources-resource-button'
                                         onClick={() => handleViewDetails(resource._id)}
                                     >
                                         View Details
@@ -165,20 +154,11 @@ const GetAllResources = () => {
                     </div>
                     {/* Pagination */}
                     {totalPages > 1 && (
-                        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                        <div className='get-all-resources-pagination'>
                             {Array.from({ length: totalPages }, (_, idx) => (
                                 <button
                                     key={idx + 1}
-                                    style={{
-                                        margin: '0 0.25rem',
-                                        padding: '0.5rem 1rem',
-                                        background: currentPage === idx + 1 ? '#1976d2' : '#eee',
-                                        color: currentPage === idx + 1 ? '#fff' : '#333',
-                                        border: 'none',
-                                        borderRadius: '4px',
-                                        cursor: 'pointer',
-                                        fontWeight: currentPage === idx + 1 ? 'bold' : 'normal',
-                                    }}
+                                    className='get-all-resources-pagination-button'
                                     onClick={() => handlePageChange(idx + 1)}
                                     disabled={currentPage === idx + 1}
                                 >

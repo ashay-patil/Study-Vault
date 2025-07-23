@@ -2,7 +2,7 @@ import {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import './Login.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,40 +33,38 @@ const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: 24 }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 12 }}>
-          <label>
+    <div className='login-container'>
+      <h2 className='login-title'>Login</h2>
+      <form onSubmit={handleSubmit} className='login-form'>
+        <div>
+          <label className='login-label'>
             Email:
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
-              style={{ width: '100%', padding: 8, marginTop: 4 }}
             />
           </label>
         </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>
+        <div>
+          <label className='login-label'>
             Password:
             <input
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              style={{ width: '100%', padding: 8, marginTop: 4 }}
             />
           </label>
         </div>
-        <button type="submit" disabled={loading} style={{ padding: 8, width: '100%' }}>
+        <button type="submit" disabled={loading} className='login-button'>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-        {error && <div style={{ color: 'red', marginTop: 12 }}>{error}</div>}
-        {success && <div style={{ color: 'green', marginTop: 12 }}>{success}</div>}
+        {error && <div className='login-error'>{error}</div>}
+        {success && <div className='login-success'>{success}</div>}
       </form>
-      <div>Don't have an account? <Link to="/register">Register</Link></div>
+      <div className='login-register'>Don't have an account? <Link to="/register">Register</Link></div>
     </div>
   );
 }

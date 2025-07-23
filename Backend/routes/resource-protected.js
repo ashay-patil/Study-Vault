@@ -9,7 +9,7 @@ router.use(authorize);
 
 router.post('/upload-my-resource',upload.single('pdf'), uploadResourceValidationMiddleware,  uploadResource);
 router.get('/get-my-resources', getMyResources);
-router.put('/update-my-resource/:id', upload.single('pdf'), updateResourceValidationMiddleware, updateResource);
+router.put('/update-my-resource/:id', updateResourceValidationMiddleware, upload.single('pdf'), updateResource);
 router.post('/add-review/:id',addReviewValidationMiddleware, addReview);
 router.delete('/delete-my-resource/:id', deleteResource);
 

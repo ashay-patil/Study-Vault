@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
+import './UpdateMyResource.css';
 const UpdateMyResource = () => {
     const {id} = useParams();
     const [form, setForm] = useState({
@@ -12,6 +13,7 @@ const UpdateMyResource = () => {
       });
       const [loading, setLoading] = useState(false);
       const [errorMsg, setErrorMsg] = useState('');
+      const [successMsg, setSuccessMsg] = useState('');
 
     useEffect(()=>{
         const fetchResource = async () => {
@@ -65,26 +67,43 @@ const UpdateMyResource = () => {
                 },
             });
             console.log(data);
-            setSuccessMsg(data.message);
+            setSuccessMsg("Resource updated successfully");
         } catch (error) {
             console.log(error);
-            setErrorMsg(error.response.data.message);
+            setErrorMsg("Resource update failed");
         }finally{
             setLoading(false);
         }
         }
     
   return (
-    <div>
-        <h1>Update Resource</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="title" value={form.title} onChange={handleChange} placeholder='Title' />
-            <input type="text" name="subject" value={form.subject} onChange={handleChange} placeholder='Subject' />
-            <input type="number" name="semester" value={form.semester} onChange={handleChange} placeholder='Semester' />
-            <input type="text" name="description" value={form.description} onChange={handleChange} placeholder='Description' />
-            <input type="file" name="pdf" onChange={handleChange} placeholder='PDF' />
-            <button type="submit" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
+    <div className='update-my-resource-container'>
+        <h2 className='update-my-resource-title'>Update Resource</h2>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <div className='update-my-resource-form-group'>
+                <label>Title</label>
+                <input type="text" name="title" value={form.title} onChange={handleChange} placeholder='Title' />
+            </div>
+            <div className='update-my-resource-form-group'>
+                <label>Subject</label>
+                <input type="text" name="subject" value={form.subject} onChange={handleChange} placeholder='Subject' />
+            </div>
+            <div className='update-my-resource-form-group'>
+                <label>Semester</label>
+                <input type="number" name="semester" value={form.semester} onChange={handleChange} placeholder='Semester' />
+            </div>
+            <div className='update-my-resource-form-group'>
+                <label>Description</label>
+                <input type="text" name="description" value={form.description} onChange={handleChange} placeholder='Description' />
+            </div>
+            <div className='update-my-resource-form-group'>
+                <label>PDF</label>
+                <input type="file" name="pdf" onChange={handleChange} placeholder='PDF' />
+            </div>
+            <button type="submit" disabled={loading} className='update-my-resource-button'>{loading ? 'Updating...' : 'Update'}</button>
         </form>
+        {errorMsg && <div className='update-my-resource-error-msg'>{errorMsg}</div>}
+        {successMsg && <div className='update-my-resource-success-msg'>{successMsg}</div>}
     </div>
   )
 }

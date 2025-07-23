@@ -1,0 +1,202 @@
+.get-a-resource-container {
+  max-width: 650px;
+  margin: 2.5rem auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem 2rem 2rem;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  color: #222;
+}
+
+.get-a-resource-container h2 {
+  font-size: 2.1rem;
+  margin-bottom: 0.7rem;
+  color: #2a5298;
+  letter-spacing: 0.5px;
+}
+
+.get-a-resource-container h3 {
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  color: #1e3c72;
+  font-size: 1.25rem;
+  letter-spacing: 0.2px;
+}
+
+.get-a-resource-subject,
+.get-a-resource-semester,
+.get-a-resource-description,
+.get-a-resource-uploaded-by,
+.get-a-resource-average-rating,
+.get-a-resource-pdf-url {
+  margin-bottom: 0.7rem;
+  font-size: 1.05rem;
+}
+
+.get-a-resource-description {
+  color: #444;
+}
+
+.get-a-resource-average-rating {
+  font-weight: 500;
+  color: #f39c12;
+}
+
+.get-a-resource-pdf-url-link {
+  display: inline-block;
+  margin-top: 0.2rem;
+  padding: 0.45rem 1.1rem;
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(42,82,152,0.08);
+}
+
+.get-a-resource-pdf-url-link:hover {
+  background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+  box-shadow: 0 4px 16px 0 rgba(42,82,152,0.13);
+}
+
+hr {
+  border: none;
+  border-top: 1.5px solid #e3e8f0;
+  margin: 2rem 0 1.5rem 0;
+}
+
+.get-a-resource-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.get-a-resource-review {
+  background: #f7fafd;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 1px 4px 0 rgba(30,60,114,0.04);
+  margin-bottom: 0.2rem;
+}
+
+.get-a-resource-review-email {
+  font-weight: 500;
+  color: #2a5298;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.get-a-resource-review-rating {
+  color: #f39c12;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.get-a-resource-review-comment {
+  color: #333;
+  font-size: 1rem;
+  margin-left: 0.1rem;
+}
+
+.get-a-resource-no-reviews {
+  color: #888;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+
+.get-a-resource-add-review-form {
+  margin-top: 1.2rem;
+  background: #f4f8fb;
+  border-radius: 10px;
+  padding: 1.3rem 1.2rem 1.1rem 1.2rem;
+  box-shadow: 0 1px 4px 0 rgba(30,60,114,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.get-a-resource-add-review-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.get-a-resource-add-review-form-group label {
+  font-weight: 500;
+  color: #1e3c72;
+  font-size: 1rem;
+}
+
+.get-a-resource-add-review-form-group-select,
+.get-a-resource-add-review-form-group-textarea {
+  margin-top: 0.2rem;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid #b6c6e3;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.2s;
+  resize: vertical;
+}
+
+.get-a-resource-add-review-form-group-select:focus,
+.get-a-resource-add-review-form-group-textarea:focus {
+  border: 1.5px solid #2a5298;
+  outline: none;
+}
+
+.get-a-resource-add-review-form-group-button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(42,82,152,0.08);
+}
+
+.get-a-resource-add-review-form-group-button:disabled {
+  background: #b6c6e3;
+  cursor: not-allowed;
+}
+
+.get-a-resource-add-review-form-group-button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+  box-shadow: 0 4px 16px 0 rgba(42,82,152,0.13);
+}
+
+.get-a-resource-add-review-form-group-error {
+  color: #d32f2f;
+  background: #fdeaea;
+  border-radius: 5px;
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
+}
+
+.get-a-resource-add-review-form-group-success {
+  color: #388e3c;
+  background: #eafaf1;
+  border-radius: 5px;
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 700px) {
+  .get-a-resource-container {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .get-a-resource-add-review-form {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+}

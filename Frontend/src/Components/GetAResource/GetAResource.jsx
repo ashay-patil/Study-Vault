@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './GetAResource.css';
 
 const GetAResource = () => {
     const { id } = useParams();
@@ -83,71 +84,61 @@ const GetAResource = () => {
     }
 
     return (
-        <div style={{ maxWidth: '700px', margin: '2rem auto', background: '#fff', borderRadius: '8px', boxShadow: '0 2px 8px #eee', padding: '2rem' }}>
-            <h2 style={{ marginBottom: '1rem' }}>{resource.title}</h2>
-            <div style={{ marginBottom: '1rem' }}>
+        <div className='get-a-resource-container'>
+            <h2>{resource.title}</h2>
+            <div className='get-a-resource-subject'>
                 <strong>Subject:</strong> {resource.subject}
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className='get-a-resource-semester'>
                 <strong>Semester:</strong> {resource.semester}
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className='get-a-resource-description'>
                 <strong>Description:</strong> {resource.description || 'No description'}
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className='get-a-resource-uploaded-by'>
                 <strong>Uploaded By:</strong> {resource.uploadedByEmail || 'Unknown'}
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className='get-a-resource-average-rating'>
                 <strong>Average Rating:</strong> {resource.averageRating ? resource.averageRating.toFixed(1) : 'No ratings yet'}
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className='get-a-resource-pdf-url'>
                 <a
                     href={resource.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                        color: '#1976d2',
-                        textDecoration: 'underline',
-                        fontWeight: 'bold'
-                    }}
+                    className='get-a-resource-pdf-url-link'
                 >
                     View PDF
                 </a>
             </div>
 
-            <hr style={{ margin: '2rem 0' }} />
+            <hr />
 
             <h3>Reviews</h3>
             {resource.reviews && resource.reviews.length > 0 ? (
-                <div style={{ marginBottom: '2rem' }}>
+                <div className='get-a-resource-reviews'>
                     {resource.reviews.map((rev, idx) => (
                         <div
                             key={idx}
-                            style={{
-                                border: '1px solid #eee',
-                                borderRadius: '4px',
-                                padding: '1rem',
-                                marginBottom: '1rem',
-                                background: '#fafbfc'
-                            }}
+                            className='get-a-resource-review'
                         >
-                            <div>
+                            <div className='get-a-resource-review-email'>
                                 <strong>{rev.email || 'Anonymous'}</strong> &nbsp;
-                                <span style={{ color: '#f39c12' }}>
+                                <span className='get-a-resource-review-rating'>
                                     {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
                                 </span>
                             </div>
-                            <div style={{ marginTop: '0.5rem' }}>{rev.comment}</div>
+                            <div className='get-a-resource-review-comment'>{rev.comment}</div>
                         </div>
                     ))}
                 </div>
             ) : (
-                <div style={{ marginBottom: '2rem', color: '#888' }}>No reviews yet.</div>
+                <div className='get-a-resource-no-reviews'>No reviews yet.</div>
             )}
 
             <h3>Add a Review</h3>
-            <form onSubmit={handleReviewSubmit} style={{ marginBottom: '2rem' }}>
-                <div style={{ marginBottom: '1rem' }}>
+            <form onSubmit={handleReviewSubmit} className='get-a-resource-add-review-form'>
+                <div className='get-a-resource-add-review-form-group'>
                     <label>
                         Rating:{' '}
                         <select
@@ -155,7 +146,7 @@ const GetAResource = () => {
                             value={reviewForm.rating}
                             onChange={handleReviewChange}
                             required
-                            style={{ padding: '0.25rem', borderRadius: '4px', border: '1px solid #ccc' }}
+                            className='get-a-resource-add-review-form-group-select'
                         >
                             <option value="">Select</option>
                             {[1, 2, 3, 4, 5].map((num) => (
@@ -166,7 +157,7 @@ const GetAResource = () => {
                         </select>
                     </label>
                 </div>
-                <div style={{ marginBottom: '1rem' }}>
+                <div className='get-a-resource-add-review-form-group'>
                     <label>
                         Comment:{' '}
                         <textarea
@@ -175,30 +166,22 @@ const GetAResource = () => {
                             onChange={handleReviewChange}
                             required
                             rows={3}
-                            style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
+                            className='get-a-resource-add-review-form-group-textarea'
                         />
                     </label>
                 </div>
                 <button
                     type="submit"
                     disabled={reviewSubmitting}
-                    style={{
-                        background: '#1976d2',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '4px',
-                        padding: '0.5rem 1.5rem',
-                        cursor: 'pointer',
-                        fontWeight: 'bold'
-                    }}
+                    className='get-a-resource-add-review-form-group-button'
                 >
                     {reviewSubmitting ? 'Submitting...' : 'Submit Review'}
                 </button>
                 {reviewError && (
-                    <div style={{ color: 'red', marginTop: '1rem' }}>{reviewError}</div>
+                    <div className='get-a-resource-add-review-form-group-error'>{reviewError}</div>
                 )}
                 {reviewSuccess && (
-                    <div style={{ color: 'green', marginTop: '1rem' }}>{reviewSuccess}</div>
+                    <div className='get-a-resource-add-review-form-group-success'>{reviewSuccess}</div>
                 )}
             </form>
         </div>

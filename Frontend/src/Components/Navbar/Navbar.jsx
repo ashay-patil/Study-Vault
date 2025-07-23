@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Navbar.css';
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -37,35 +38,6 @@ const Navbar = () => {
     fetchUser();
   }, []);
 
-  const navStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '16px 32px',
-    background: '#222',
-    color: '#fff',
-  };
-
-  const linksStyle = {
-    display: 'flex',
-    gap: '24px',
-    alignItems: 'center',
-  };
-
-  const linkStyle = {
-    color: '#fff',
-    textDecoration: 'none',
-    fontWeight: 500,
-    fontSize: 16,
-    padding: '6px 12px',
-    borderRadius: 4,
-    transition: 'background 0.2s',
-  };
-
-  const linkActiveStyle = {
-    background: '#444',
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
@@ -73,18 +45,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={navStyle}>
-      <div style={linksStyle}>
-        <Link to="/" style={linkStyle} activeStyle={linkActiveStyle}>
+    <nav className='navbar-container'>
+      <div className='navbar-links'>
+        <Link to="/" className='navbar-link' activeClassName='navbar-link-active'>
           Home
         </Link>
-        <Link to="/getAllResources" style={linkStyle} activeStyle={linkActiveStyle}>
+        <Link to="/getAllResources" className='navbar-link' activeClassName='navbar-link-active'>
           All Resources
         </Link>
-        <Link to="/getMyResources" style={linkStyle} activeStyle={linkActiveStyle}>
+        <Link to="/getMyResources" className='navbar-link' activeClassName='navbar-link-active'>
           My Resources
         </Link>
-        <Link to="/createResource" style={linkStyle} activeStyle={linkActiveStyle}>
+        <Link to="/createResource" className='navbar-link' activeClassName='navbar-link-active'>
           Create Resource
         </Link>
       </div>
@@ -92,10 +64,10 @@ const Navbar = () => {
         {user ? (
           <span>
             Welcome, <b>{user.name || user.email || 'User'}</b>
-            <button onClick={() => handleLogout()}>Logout</button>
+            <button className='navbar-logout' onClick={() => handleLogout()}>Logout</button>
           </span>
         ) : (
-          <span onClick={() => handleNavigate('/login')}>Login</span>
+          <span className='navbar-login' onClick={() => handleNavigate('/login')}>Login</span>
         )}
       </div>
     </nav>
