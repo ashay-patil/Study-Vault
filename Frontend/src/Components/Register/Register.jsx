@@ -64,6 +64,8 @@ const OtpForm = ({
   otpLoading,
   handleOtpSubmit,
   otpStatus,
+  handleResendOtp,
+  resendOtpLoading,
 }) => (
   <form onSubmit={handleOtpSubmit}>
     <div style={{ marginBottom: 12 }}>
@@ -77,6 +79,11 @@ const OtpForm = ({
           style={{ width: '100%', padding: 8, marginTop: 4 }}
         />
       </label>
+    </div>
+    <div className="resend-otp" style={{ marginBottom: 12 }}>
+      <button type="button" onClick={handleResendOtp} disabled={resendOtpLoading} style={{ padding: 8, width: '100%' }}>
+        Resend OTP
+      </button>
     </div>
     <button type="submit" disabled={otpLoading} style={{ padding: 8, width: '100%' }}>
       {otpLoading ? 'Verifying OTP...' : 'Verify OTP'}
@@ -99,6 +106,7 @@ const Register = () => {
   const [otp, setOtp] = useState('');
   const [otpStatus, setOtpStatus] = useState('');
   const [otpLoading, setOtpLoading] = useState(false);
+  const [resendOtpLoading, setResendOtpLoading] = useState(false);
 
   const navigate = useNavigate();
   const handleOtpSubmit = async (e) => {
@@ -145,6 +153,23 @@ const Register = () => {
     }
   };
 
+  const handleResendOtp = async () => {
+    setResendOtpLoading(true);
+    try {
+      const res = await axios.post('http://localhost:3000/api/v1/auth/resend-otp', { email });
+      if (res.data.success) {
+        setSuccess('OTP resent to your email');
+        alert("OTP resent to your email");
+      } else {
+        setError(res.data.msg || 'An error occurred. Please try again.');
+      }
+    } catch (err) {
+      setError(err.response.data.msg || 'An error occurred. Please try again.');
+    } finally {
+      setResendOtpLoading(false);
+    }
+  };
+
   return (
     <div style={{ maxWidth: 400, margin: '0 auto', padding: 24 }}>
       <h2>Register</h2>
@@ -168,6 +193,8 @@ const Register = () => {
           otpLoading={otpLoading}
           handleOtpSubmit={handleOtpSubmit}
           otpStatus={otpStatus}
+          handleResendOtp={handleResendOtp}
+          resendOtpLoading={resendOtpLoading}
         />
       )}
     </div>

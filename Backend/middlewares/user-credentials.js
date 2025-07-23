@@ -19,6 +19,7 @@ const loginCredentialMiddleware = (req, res, next)=>{
 }
 
 const resendOTPCredentialMiddleware = (req, res, next)=>{
+    console.log("Reached resendOTPCredentialMiddleware");
     const {error} = resendOTP(req.body);
     if(error){
         throw new InvalidCredentials(error.details[0].message);
