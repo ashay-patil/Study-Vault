@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const reviewSchema = require('./review');
-const User = require('./user');
-
 
 const resourceSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
@@ -9,7 +7,7 @@ const resourceSchema = new mongoose.Schema({
     semester: { type: Number, required: true },
     description: String,
     pdfUrl: { type: String, required: true },
-    uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
     uploadedByEmail: { type: String, required: true },
     reviews: [reviewSchema],
     averageRating: { type: Number, default: 0 },
