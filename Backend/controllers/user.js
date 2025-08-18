@@ -16,7 +16,7 @@ const register = async (req, res) => {
     const hashpass = await bcrypt.hash(password, 10);
     const otp = generateOTP();
     const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
-    await sendOTP(email, otp);
+    
     if (userExist == null) {
         await User.create({
             email,
@@ -31,6 +31,7 @@ const register = async (req, res) => {
         userExist.otpExpiresAt = otpExpiresAt;
         await userExist.save();
     }
+    await sendOTP(email, otp);
     res.status(StatusCodes.CREATED).json({ success: true, msg: `OTP sent to ${email}` });
 }
 
