@@ -184,4 +184,9 @@ Pull requests, ideas, and improvements are highly encouraged! Whether you're a f
 
 Because sharing knowledge should be **simple, secure, and fast.**
 
+---
+## Owner
+ ## Ashay Patil
+
 ## Happy Coding !!
+
