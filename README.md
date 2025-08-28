@@ -46,6 +46,36 @@ The **Study Vault** project streamlines the process of sharing and accessing aca
 
 In summary, Study Vault offers a seamless, secure, and efficient way for students to share and discover study materials, empowering collaborative learning and academic success.
 
+---
+
+## 🎥 Demo Video & Screenshots
+
+### 📹 Demo Video
+[![Watch the video](Demo_Video_Images/Images/Video_Thumbnail.jpg)](Demo_Video_Images/Study_Vault_Working_Demo.mp4)
+
+### 📸 Screenshots
+
+#### Home Page
+![Home Page](Demo_Video_Images/Images/Home.jpg)
+
+#### Registration Page
+![Registration](Demo_Video_Images/Images/Register.jpg)
+
+#### Login Page
+![Login](Demo_Video_Images/Images/login.jpg)
+
+
+#### Upload Notes
+![Upload](Demo_Video_Images/Images/Upload_A_Resource.jpg)
+
+#### Explore Page
+![Explore](Demo_Video_Images/Images/All_Resources.jpg)
+
+#### Review a Resource
+![Resource Details](Demo_Video_Images/Images/Review_A_Resource.jpg)
+
+#### My Resources
+![Mobile View](Demo_Video_Images/Images/My_Resources.jpg)
 
 ---
 
