@@ -51,31 +51,31 @@ In summary, Study Vault offers a seamless, secure, and efficient way for student
 ## 🎥 Demo Video & Screenshots
 
 ### 📹 Demo Video
-[![Watch the video](Demo_Video_Images/Images/Video_Thumbnail.jpg)](Demo_Video_Images/Study_Vault_Working_Demo.mp4)
+[![Watch the video](Demo_Images/Video_Thumbnail.jpg)](https://youtu.be/1rG5nlNRSYU)
 
 ### 📸 Screenshots
 
 #### Home Page
-![Home Page](Demo_Video_Images/Images/Home.jpg)
+![Home Page](Demo_Images/Home.jpg)
 
 #### Registration Page
-![Registration](Demo_Video_Images/Images/Register.jpg)
+![Registration](Demo_Images/Register.jpg)
 
 #### Login Page
-![Login](Demo_Video_Images/Images/login.jpg)
+![Login](Demo_Images/login.jpg)
 
 
 #### Upload Notes
-![Upload](Demo_Video_Images/Images/Upload_A_Resource.jpg)
+![Upload](Demo_Images/Upload_A_Resource.jpg)
 
 #### Explore Page
-![Explore](Demo_Video_Images/Images/All_Resources.jpg)
+![Explore](Demo_Images/All_Resources.jpg)
 
 #### Review a Resource
-![Resource Details](Demo_Video_Images/Images/Review_A_Resource.jpg)
+![Resource Details](Demo_Images/Review_A_Resource.jpg)
 
 #### My Resources
-![Mobile View](Demo_Video_Images/Images/My_Resources.jpg)
+![Mobile View](Demo_Images/My_Resources.jpg)
 
 ---
 
