@@ -62,7 +62,7 @@ In summary, Study Vault offers a seamless, secure, and efficient way for student
 ![Registration](Demo_Images/Register.jpg)
 
 #### Login Page
-![Login](Demo_Images/login.jpg)
+![Login](Demo_Images/Login.jpg)
 
 
 #### Upload Notes
