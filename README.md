@@ -1,9 +1,6 @@
 # 📘 Study Vault: Upload, Discover & Empower Student Learning Instantly
 
-**Study Vault** is a feature-rich, full-stack MERN application designed to revolutionize the way students access and share academic resources. Built with precision, performance, and purpose, it enables users to seamlessly upload, explore, and download notes, PDFs, and study materials with just a few clicks.
-
-From OTP-secured registration to blazing-fast Cloudinary file delivery, this project demonstrates industry-level architecture, secure authentication, optimized file handling, and clean code structure—everything a modern web app should offer.
-
+**Study Vault** is a full-stack MERN application designed to solve the real-world problem of ineffective note-sharing among students. Traditionally, students rely on social media messengers like WhatsApp or Telegram to exchange study materials, but these platforms are not built for academic resource management—notes get mixed up with unrelated messages, important files are lost in group chats, and there is no mechanism to judge the quality of content. Study Vault addresses this by offering a dedicated platform where students can securely upload notes, organize resources, and explore materials shared by peers. Each uploaded file can be downloaded in just a few clicks, while a built-in 5-star rating system and commenting feature enable peer-based quality evaluation, ensuring that the best resources stand out. On the backend, the platform uses OTP-based authentication for secure sign-ups, Cloudinary for scalable and lightning-fast file delivery, and a clean MVC architecture with route protection, input validation, and custom error handling for reliability. By combining security, scalability, and collaborative features, Study Vault not only streamlines academic resource sharing but also builds a trustworthy knowledge ecosystem that helps students learn faster, smarter, and together.
 ---
 
 ### Working
