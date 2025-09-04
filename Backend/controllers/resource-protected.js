@@ -88,12 +88,7 @@ const addReview = async (req, res) => {
       console.log("resource",resource);
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
   
-      const alreadyReviewed = resource.reviews.find(
-        (rev) => rev.user.toString() === req.user.id.toString()
-      );
-      if (alreadyReviewed) {
-        return res.status(400).json({ message: 'You already reviewed this resource' });
-      }
+      
   
       const newReview = {
         user: req.user.id,
