@@ -73,7 +73,7 @@ const CreateResource = () => {
               name="title"
               value={form.title}
               onChange={handleChange}
-              required
+              // required
               style={{ width: '100%', padding: '8px', marginTop: '4px' }}
             />
           </label>
@@ -86,7 +86,7 @@ const CreateResource = () => {
               name="subject"
               value={form.subject}
               onChange={handleChange}
-              required
+              // required
             />
           </label>
         </div>
@@ -98,7 +98,7 @@ const CreateResource = () => {
               name="semester"
               value={form.semester}
               onChange={handleChange}
-              required
+              // required
             />
           </label>
         </div>
@@ -109,7 +109,7 @@ const CreateResource = () => {
               name="description"
               value={form.description}
               onChange={handleChange}
-              required
+              // required
               rows={4}
             />
           </label>
@@ -122,7 +122,7 @@ const CreateResource = () => {
               name="pdf"
               accept="application/pdf"
               onChange={handleChange}
-              required
+              // required
             />
           </label>
         </div>

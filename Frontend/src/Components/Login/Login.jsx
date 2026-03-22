@@ -43,7 +43,7 @@ const Login = () => {
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              required
+              // required
             />
           </label>
         </div>
@@ -54,7 +54,7 @@ const Login = () => {
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              required
+              // required
             />
           </label>
         </div>

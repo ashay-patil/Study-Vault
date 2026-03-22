@@ -12,7 +12,11 @@ const registerCredentialMiddleware = (req, res, next)=>{
 
 const loginCredentialMiddleware = (req, res, next)=>{
     const {error} = login(req.body);
+    console.log("validation"+req.body);
+    console.log("validation"+error);
+    console.log("validation"+error?.details[0]?.message)
     if(error){
+        
         throw new InvalidCredentials(error.details[0].message);
     }
     next();

@@ -22,7 +22,7 @@ const RegisterForm = ({
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
-          required
+          // required
         />
       </label>
     </div>
@@ -33,7 +33,7 @@ const RegisterForm = ({
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          required
+          // required
         />
       </label>
     </div>
@@ -44,7 +44,7 @@ const RegisterForm = ({
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          required
+          // required
         />
       </label>
     </div>
@@ -73,7 +73,7 @@ const OtpForm = ({
           type="text"
           value={otp}
           onChange={e => setOtp(e.target.value)}
-          required
+          // required
         />
       </label>
     </div>

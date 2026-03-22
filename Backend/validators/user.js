@@ -16,6 +16,8 @@ const register = (data) => {
                 'string.min': 'Password must be at least 6 characters',
                 'any.required': 'Password is required'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -36,6 +38,8 @@ const login = (data) => {
                 'string.min': 'Password must be at least 6 characters',
                 'any.required': 'Password is required'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -56,6 +60,8 @@ const verifyOTP = (data) => {
                 'string.pattern.base': 'OTP should be exactly 6 digits',
                 'any.required': 'OTP is required'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -69,6 +75,8 @@ const resendOTP = (data) => {
                 'string.email': 'Invalid email format',
                 'any.required': 'Email is required'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };

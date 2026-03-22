@@ -1,5 +1,121 @@
 const Joi = require('joi');
 
+
+const uploadfileSchema = (fileData) => {
+    console.log("file Validator : "+ fileData);
+    const schema = Joi.object({
+        fieldname: Joi.string().required().messages({
+            'string.base': 'Field name must be a string',
+            'string.empty': 'Field name cannot be empty',
+            'any.required': 'Field name is required'
+        }),
+
+        originalname: Joi.string().required().messages({
+            'string.base': 'Original file name must be a string',
+            'string.empty': 'Original file name cannot be empty',
+            'any.required': 'Original file name is required'
+        }),
+
+        encoding: Joi.string().required().messages({
+            'string.base': 'Encoding must be a string',
+            'string.empty': 'Encoding cannot be empty',
+            'any.required': 'Encoding is required'
+        }),
+
+        mimetype: Joi.string()
+            .valid('application/pdf')
+            .required()
+            .messages({
+                'string.base': 'MIME type must be a string',
+                'any.only': 'Only PDF files are allowed',
+                'any.required': 'MIME type is required'
+            }),
+
+        size: Joi.number()
+            .max(50 * 1024 * 1024)
+            .required()
+            .messages({
+                'number.base': 'File size must be a number',
+                'number.max': 'File size must be less than or equal to 50 MB',
+                'any.required': 'File size is required'
+            }),
+
+        destination: Joi.string().optional().messages({
+            'string.base': 'Destination must be a string'
+        }),
+
+        filename: Joi.string().optional().messages({
+            'string.base': 'Filename must be a string'
+        }),
+
+        path: Joi.string().optional().messages({
+            'string.base': 'Path must be a string'
+        }),
+    })
+    .required().messages({
+        'any.required': 'File is required. Please upload a PDF file'
+    });
+
+    return schema.validate(fileData);
+};
+
+const updatefileSchema = (fileData) => {
+    console.log("file Validator update: "+ fileData);
+    const schema = Joi.object({
+        fieldname: Joi.string().required().messages({
+            'string.base': 'Field name must be a string',
+            'string.empty': 'Field name cannot be empty',
+            'any.required': 'Field name is required'
+        }),
+
+        originalname: Joi.string().required().messages({
+            'string.base': 'Original file name must be a string',
+            'string.empty': 'Original file name cannot be empty',
+            'any.required': 'Original file name is required'
+        }),
+
+        encoding: Joi.string().required().messages({
+            'string.base': 'Encoding must be a string',
+            'string.empty': 'Encoding cannot be empty',
+            'any.required': 'Encoding is required'
+        }),
+
+        mimetype: Joi.string()
+            .valid('application/pdf')
+            .required()
+            .messages({
+                'string.base': 'MIME type must be a string',
+                'any.only': 'Only PDF files are allowed',
+                'any.required': 'MIME type is required'
+            }),
+
+        size: Joi.number()
+            .max(50 * 1024 * 1024)
+            .required()
+            .messages({
+                'number.base': 'File size must be a number',
+                'number.max': 'File size must be less than or equal to 50 MB',
+                'any.required': 'File size is required'
+            }),
+
+        destination: Joi.string().optional().messages({
+            'string.base': 'Destination must be a string'
+        }),
+
+        filename: Joi.string().optional().messages({
+            'string.base': 'Filename must be a string'
+        }),
+
+        path: Joi.string().optional().messages({
+            'string.base': 'Path must be a string'
+        }),
+    });
+
+    return schema.validate(fileData);
+};
+
+
+
 const uploadResource = (data) => {
     const schema = Joi.object({
         title: Joi.string().min(3).max(100).required()
@@ -31,6 +147,8 @@ const uploadResource = (data) => {
                 'string.base': 'Description must be a string',
                 'string.max': 'Description must be at most 500 characters'
             }),
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -60,6 +178,8 @@ const updateResource = (data) => {
                 'string.base': 'Description must be a string',
                 'string.max': 'Description must be at most 500 characters'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -78,12 +198,17 @@ const addReview = (data) => {
                 'string.base': 'Comment must be a string',
                 'string.max': 'Comment must be at most 500 characters'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
+    
 };
 
 module.exports = {
     uploadResource,
     updateResource,
-    addReview
+    addReview,
+    uploadfileSchema,
+    updatefileSchema
 };

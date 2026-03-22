@@ -30,6 +30,8 @@ const getResources = (data) => {
                 'number.min': 'Limit must be at least 1',
                 'number.max': 'Limit must be at most 100'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };
@@ -43,6 +45,8 @@ const getResourceById = (data) => {
                 'string.hex': 'Resource ID must be a valid hex string',
                 'any.required': 'Resource ID is required'
             })
+    }).required().messages({
+        'any.required': 'Complete Input is required'
     });
     return schema.validate(data);
 };

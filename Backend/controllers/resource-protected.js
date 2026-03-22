@@ -6,10 +6,10 @@ const uploadResource = async (req, res) => {
     try {
       const { title, subject, semester, description } = req.body;
       const url = req.file?.path;
-      console.log("url",url);
+      // console.log("url",url);
       const result = await uploadToCloudinary(url);
       const pdfUrl = result.secure_url;
-      console.log("pdfUrl",pdfUrl);
+      // console.log("pdfUrl",pdfUrl);
       if (!pdfUrl) return res.status(400).json({ message: 'PDF is required' });
   
       const newResource = new Resource({
@@ -37,7 +37,7 @@ const getMyResources = async (req, res) => {
       console.log("req.user.id",req.user.id);
       const myResources = await Resource.find({ uploadedBy: req.user.id }).sort({ createdAt: -1 });
       res.json(myResources);
-      console.log("myResources",myResources);
+      // console.log("myResources",myResources);
     } catch (err) {
       res.status(500).json({ message: 'Could not fetch your resources. Try again later', error: err.message });
     }
@@ -58,6 +58,8 @@ const updateResource = async (req, res) => {
 
       if (req.file) {
         const url = req.file?.path;
+        console.log(url);
+        console.log("sending to cloudinary");
         const result = await uploadToCloudinary(url);
         pdfUrl = result.secure_url;
         console.log("Updated pdfUrl",pdfUrl);
@@ -70,6 +72,7 @@ const updateResource = async (req, res) => {
       resource.description = description || resource.description;
       resource.pdfUrl = pdfUrl || resource.pdfUrl;
       const updated = await resource.save();
+      console.log(updated);
       res.json(updated);
     } catch (err) {
       res.status(500).json({ message: 'Update failed', error: err.message });

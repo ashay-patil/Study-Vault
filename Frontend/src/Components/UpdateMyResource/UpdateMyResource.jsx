@@ -59,7 +59,7 @@ const UpdateMyResource = () => {
             formData.append('subject', form.subject);
             formData.append('semester', form.semester);
             formData.append('description', form.description);
-            formData.append('pdf', form.pdf);
+            if (form.pdf) formData.append('pdf', form.pdf);
             const {data} = await axios.put(`http://localhost:3000/api/v1/resources/protected/update-my-resource/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -70,7 +70,7 @@ const UpdateMyResource = () => {
             setSuccessMsg("Resource updated successfully");
         } catch (error) {
             console.log(error);
-            setErrorMsg("Resource update failed");
+            setErrorMsg(error.response.data.message || "Resource update failed");
         }finally{
             setLoading(false);
         }
