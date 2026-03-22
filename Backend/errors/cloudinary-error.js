@@ -1,5 +1,7 @@
 const CustomAPIError = require('./customAPIerrors');
 
+const { StatusCodes } = require('http-status-codes');
+
 class CloudinaryError extends CustomAPIError {
     constructor(message) {
         super(message);

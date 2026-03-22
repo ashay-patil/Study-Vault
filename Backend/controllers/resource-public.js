@@ -16,7 +16,7 @@ title: { type: String, required: true, trim: true },
 */
 
 const getAllResources = async (req, res) => {
-    try {
+    // try {
       const { page = 1, search = '', subject = '', semester = '' } = req.query;
       const limit = 8;
       const skip = (page - 1) * limit;
@@ -39,22 +39,22 @@ const getAllResources = async (req, res) => {
         .limit(limit);
   
       res.json({ resources, totalPages: Math.ceil(total / limit), currentPage: +page });
-    } catch (err) {
-      res.status(500).json({ message: 'Error fetching resources. Try again later', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Error fetching resources. Try again later', error: err.message });
+    // }
 };
 
 const getSingleResource = async (req, res) => {
-    try {
+    // try {
       console.log("Reached getSingleResource controller");
       console.log("req.params.id",req.params.id);
       const resource = await Resource.findById(req.params.id);
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
   
       res.json(resource);
-    } catch (err) {
-      res.status(500).json({ message: 'Error fetching resource. Try again later', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Error fetching resource. Try again later', error: err.message });
+    // }
 };
 
 module.exports = {getAllResources, getSingleResource};

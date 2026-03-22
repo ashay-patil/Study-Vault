@@ -70,7 +70,7 @@ const UpdateMyResource = () => {
             setSuccessMsg("Resource updated successfully");
         } catch (error) {
             console.log(error);
-            setErrorMsg(error.response.data.message || "Resource update failed");
+            setErrorMsg(error.response.data.msg || "Resource update failed");
         }finally{
             setLoading(false);
         }

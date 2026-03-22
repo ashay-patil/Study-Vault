@@ -3,7 +3,7 @@ const uploadToCloudinary = require('../services/cloudinaryService');
 
 
 const uploadResource = async (req, res) => {
-    try {
+    // try {
       const { title, subject, semester, description } = req.body;
       const url = req.file?.path;
       // console.log("url",url);
@@ -24,28 +24,28 @@ const uploadResource = async (req, res) => {
   
       const saved = await newResource.save();
       res.status(201).json(saved);
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).json({ message: 'Upload failed', error: err.message });
-    }
+    // } catch (err) {
+    //   console.log(err.message);
+    //   res.status(500).json({ message: 'Upload failed', error: err.message });
+    // }
 };
   
 
 const getMyResources = async (req, res) => {
-    try {
+    // try {
       console.log("Reached getMyResources controller");
       console.log("req.user.id",req.user.id);
       const myResources = await Resource.find({ uploadedBy: req.user.id }).sort({ createdAt: -1 });
       res.json(myResources);
       // console.log("myResources",myResources);
-    } catch (err) {
-      res.status(500).json({ message: 'Could not fetch your resources. Try again later', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Could not fetch your resources. Try again later', error: err.message });
+    // }
 };
   
 
 const updateResource = async (req, res) => {
-    try {
+    // try {
       const resource = await Resource.findById(req.params.id);
   
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
@@ -74,14 +74,14 @@ const updateResource = async (req, res) => {
       const updated = await resource.save();
       console.log(updated);
       res.json(updated);
-    } catch (err) {
-      res.status(500).json({ message: 'Update failed', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Update failed', error: err.message });
+    // }
 };
   
 
 const addReview = async (req, res) => {
-    try {
+    // try {
       const { rating, comment } = req.body;
       console.log("Reached addReview controller");
       console.log("req.body",req.body);
@@ -109,14 +109,14 @@ const addReview = async (req, res) => {
       await resource.save();
   
       res.status(201).json({ message: 'Review added' });
-    } catch (err) {
-      res.status(500).json({ message: 'Error adding review', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Error adding review', error: err.message });
+    // }
 };
 
 
 const deleteResource = async (req, res) => {
-    try {
+    // try {
       const resource = await Resource.findById(req.params.id);
       if (!resource) return res.status(404).json({ message: 'Resource not found' });
   
@@ -127,9 +127,9 @@ const deleteResource = async (req, res) => {
       await resource.deleteOne();
       console.log("Resource deleted successfully");
       res.json({ message: 'Resource deleted successfully' });
-    } catch (err) {
-      res.status(500).json({ message: 'Delete failed', error: err.message });
-    }
+    // } catch (err) {
+    //   res.status(500).json({ message: 'Delete failed', error: err.message });
+    // }
 };
 
 module.exports = {uploadResource, getMyResources, updateResource, addReview, deleteResource};
