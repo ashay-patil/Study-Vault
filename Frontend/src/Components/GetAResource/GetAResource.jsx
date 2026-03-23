@@ -145,7 +145,7 @@ const GetAResource = () => {
                             name="rating"
                             value={reviewForm.rating}
                             onChange={handleReviewChange}
-                            // required
+                            required
                             className='get-a-resource-add-review-form-group-select'
                         >
                             <option value="">Select</option>
@@ -164,7 +164,7 @@ const GetAResource = () => {
                             name="comment"
                             value={reviewForm.comment}
                             onChange={handleReviewChange}
-                            // required
+                            required
                             rows={3}
                             className='get-a-resource-add-review-form-group-textarea'
                         />
