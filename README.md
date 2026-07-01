@@ -46,37 +46,6 @@ In summary, Study Vault offers a seamless, secure, and efficient way for student
 
 ---
 
-## 🎥 Demo Video & Screenshots
-
-### 📹 Demo Video
-[![Watch the video](Demo_Images/Video_Thumbnail.jpg)](https://youtu.be/1rG5nlNRSYU)
-
-### 📸 Screenshots
-
-#### Home Page
-![Home Page](Demo_Images/Home.jpg)
-
-#### Registration Page
-![Registration](Demo_Images/Register.jpg)
-
-#### Login Page
-![Login](Demo_Images/Login.jpg)
-
-
-#### Upload Notes
-![Upload](Demo_Images/Upload_A_Resource.jpg)
-
-#### Explore Page
-![Explore](Demo_Images/All_Resources.jpg)
-
-#### Review a Resource
-![Resource Details](Demo_Images/Review_A_Resource.jpg)
-
-#### My Resources
-![Mobile View](Demo_Images/My_Resources.jpg)
-
----
-
 ## 🚀 Features
 
 ### 🔐 **Robust User Authentication & Security**
@@ -147,11 +116,130 @@ In summary, Study Vault offers a seamless, secure, and efficient way for student
 * API calls using **Axios**
 * Responsive design using plain CSS
 
+### 🐳 DevOps
+
+* **Docker** & **Docker Compose** for containerized local development
+* Multi-service orchestration with health checks and env-based configuration
+
+---
+
+## 🐳 Docker Support
+
+Study Vault can be run entirely with **Docker** and **Docker Compose**, so you don't need to install Node.js locally or run the frontend and backend in separate terminals. Each service runs in its own container, and Compose wires them together from the project root.
+
+### 📁 Docker Files
+
+| File | Purpose |
+|---|---|
+| `docker-compose.yml` | Orchestrates the backend and frontend services |
+| `Backend/Dockerfile` | Builds and runs the Express API |
+| `Frontend/Dockerfile` | Builds and runs the Vite + React dev server |
+| `Backend/.dockerignore` | Excludes `node_modules`, `.env`, etc. from the backend image |
+| `Frontend/.dockerignore` | Excludes `node_modules`, `dist`, `.env`, etc. from the frontend image |
+
+### ⚙️ How It Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     docker compose up                       │
+└─────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┴───────────────┐
+              ▼                               ▼
+   ┌──────────────────────┐       ┌──────────────────────┐
+   │   backend container  │       │  frontend container  │
+   │   (Node 20 Alpine)   │       │   (Node 20 Alpine)   │
+   │                      │       │                      │
+   │  node app.js         │       │  npm run dev         │
+   │  port 3000           │       │  port 5173           │
+   └──────────┬───────────┘       └───────────┬──────────┘
+              │                               │
+              ▼                               ▼
+   ┌─────────────────────┐       Browser opens http://localhost:5173
+   │  MongoDB Atlas      │       API calls go to http://localhost:3000
+   │  Cloudinary         │
+   │  (via .env secrets) │
+   └─────────────────────┘
+```
+
+1. **Backend container**
+   - Built from `Backend/Dockerfile` using the official `node:20-alpine` image.
+   - Installs dependencies, copies the source code, and starts the server with `node app.js`.
+   - Reads configuration from `Backend/.env` at runtime (the `.env` file is **not** copied into the image for security).
+   - Connects to **MongoDB Atlas** and **Cloudinary** over the internet using credentials from the env file.
+   - Exposes port **3000** to your machine.
+
+2. **Frontend container**
+   - Built from `Frontend/Dockerfile` using the same Node Alpine base image.
+   - Installs dependencies and runs the Vite dev server with `npm run dev`.
+   - The compose file adds `--host 0.0.0.0` so the app is reachable from outside the container.
+   - Exposes port **5173** to your machine.
+
+3. **Docker Compose orchestration**
+   - **`env_file`** — injects `Backend/.env` into the backend container (e.g. `MONGO_URI`, `JWT_SECRET`, Cloudinary keys).
+   - **`healthcheck`** — pings `http://localhost:3000/` inside the backend container to confirm the server is up.
+   - **`depends_on` with `service_healthy`** — the frontend starts only after the backend passes its health check, not just after the container begins starting.
+   - **`restart: unless-stopped`** — containers automatically restart if they crash or after a system reboot.
+
+### 🔑 Environment Setup
+
+Create a `Backend/.env` file before running Docker (this file stays on your machine and is loaded at runtime):
+
+```env
+PORT=3000
+MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/<dbname>
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+EMAIL_OWNER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+```
+
+Also ensure **MongoDB Atlas → Network Access** allows connections from your IP (or `0.0.0.0/0` for development).
+
+### 🚀 Running with Docker
+
+**Prerequisites:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+
+From the project root:
+
+```bash
+# Build and start both services (foreground — logs in terminal)
+docker compose up
+
+# Or run in detached mode (background)
+docker compose up -d
+
+# Stop containers
+docker compose stop
+
+# Restart containers
+docker compose start
+
+# Stop and remove containers
+docker compose down
+
+# View logs (when running detached)
+docker compose logs -f
+
+# Check container status
+docker compose ps
+```
+
+Once running, open:
+
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:5173 |
+| Backend | http://localhost:3000 |
+
+The frontend sends API requests to `http://localhost:3000`. Because the backend port is published to your host, this works when both containers are running via Compose.
+
+
 ---
 
 ## 🌟 Why Will You Love Study Vault
-
-> “Build what solves a real problem. Architect it like a pro.”
 
 * ✅ Clean MVC structure & modular codebase
 * ✅ Full JWT-based authentication with secure cookies
@@ -184,7 +272,8 @@ Because sharing knowledge should be **simple, secure, and fast.**
 
 ---
 ## Owner
-  -- Ashay Patil
+
+Ashay Patil
 
 ## Happy Coding !!
 
